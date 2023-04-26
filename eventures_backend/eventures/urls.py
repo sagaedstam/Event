@@ -1,15 +1,36 @@
 # eventures/urls.py
-from django.urls import path, include
-from rest_framework_simplejwt.views import TokenRefreshView
-from .views import *
+
+from django.urls import path
+from .views import (
+    StudentListCreateView,
+    StudentRetrieveUpdateDestroyView,
+    OrganizationListCreateView,
+    OrganizationRetrieveUpdateDestroyView,
+)
 
 urlpatterns = [
-    path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('user/create/', MyUserCreateAPIView.as_view(), name='user_create'),
-    path('user/login/', MyUserLoginAPIView.as_view(), name='user_login'),
-    path('user/list/', MyUserListAPIView.as_view(), name='user_list'),
-    path('organization/', OrganizationViewSet.as_view({'get': 'list', 'post': 'create'}), name='organization'),
-    path('organization/<int:pk>/', OrganizationViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='organization_detail'),
-    path('profile/', ProfileView.as_view(), name='profile'),
+    path('students/', StudentListCreateView.as_view(), name='student-list-create'),
+    path('students/<int:pk>/', StudentRetrieveUpdateDestroyView.as_view(), name='student-detail'),
+    path('organizations/', OrganizationListCreateView.as_view(), name='organization-list-create'),
+    path('organizations/<int:pk>/', OrganizationRetrieveUpdateDestroyView.as_view(), name='organization-detail'),
 ]
+
+
+# # eventures/urls.py
+# from django.urls import path, include
+# from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
+# from rest_framework import routers
+
+# from .views import MyUserViewSet, StudentViewSet, OrganizationViewSet
+
+# router = routers.DefaultRouter()
+# router.register('users', MyUserViewSet)
+# router.register('students', StudentViewSet)
+# router.register('organizations', OrganizationViewSet)
+
+# urlpatterns = [
+#     path('', include(router.urls)),
+#     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+#     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+#     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+# ]

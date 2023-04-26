@@ -18,28 +18,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from eventures import urls as eventures_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
-    path('', include(eventures_urls)),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('api/', include('eventures.urls')),
 ]
-
-# from django.contrib import admin
-# from django.urls import path, include
-# from eventures import urls as eventures_urls
-# from rest_framework import routers
-# from rest_framework import viewsets
-# from eventures.views import StudentViewSet, OrganizationViewSet
-
-# router = routers.DefaultRouter()
-# router.register(r'students', StudentViewSet)
-# router.register(r'organizations', OrganizationViewSet)
-
-# urlpatterns = [
-#     path('', include(router.urls)),
-#     path('admin/', admin.site.urls),
-#     path('api/', include(eventures_urls)),
-# ]
